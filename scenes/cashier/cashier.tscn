@@ -1,0 +1,168 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1ca60jhni686"]
+
+[ext_resource type="Script" uid="uid://bkq328io150bn" path="res://scenes/cashier/cashier.gd" id="1_erpnb"]
+[ext_resource type="Texture2D" uid="uid://bc06hq6oh48v4" path="res://Assets/Sprites/shadow.png" id="2_2t7dy"]
+[ext_resource type="Texture2D" uid="uid://vukrm1i8u07n" path="res://Assets/Sprites/Characters/blue_body_square.png" id="3_6b6cf"]
+[ext_resource type="Texture2D" uid="uid://bvch4x2edlq76" path="res://Assets/Sprites/Characters/face_c.png" id="4_g06gb"]
+[ext_resource type="Texture2D" uid="uid://ctjsioplj2qsa" path="res://Assets/Sprites/Characters/blue_hand_closed.png" id="5_hrvro"]
+
+[sub_resource type="Animation" id="Animation_ebu81"]
+resource_name = "idle_animation"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/Face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/HandLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-59.5, 17), Vector2(-59.5, 10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/HandRigh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(60, 17), Vector2(60, 10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5w2py"]
+resource_name = "move_animation"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9, 1.1), Vector2(1.1, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_utgkf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/Face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/HandLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-59.5, 17)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/HandRigh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(60, 17)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g27nx"]
+_data = {
+&"RESET": SubResource("Animation_utgkf"),
+&"idle_animation": SubResource("Animation_ebu81"),
+&"move_animation": SubResource("Animation_5w2py")
+}
+
+[node name="Cashier" type="Node2D"]
+script = ExtResource("1_erpnb")
+
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="visuals"]
+self_modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(2, 53)
+texture = ExtResource("2_2t7dy")
+
+[node name="Body" type="Sprite2D" parent="visuals"]
+texture = ExtResource("3_6b6cf")
+
+[node name="Face" type="Sprite2D" parent="visuals"]
+texture = ExtResource("4_g06gb")
+
+[node name="HandLeft" type="Sprite2D" parent="visuals"]
+position = Vector2(-59.5, 17)
+rotation = -3.14159
+texture = ExtResource("5_hrvro")
+
+[node name="HandRigh" type="Sprite2D" parent="visuals"]
+position = Vector2(60, 17)
+scale = Vector2(1, -1)
+texture = ExtResource("5_hrvro")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g27nx")
+}
+autoplay = "idle_animation"
