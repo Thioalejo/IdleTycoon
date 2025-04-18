@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbkm7epkrfhnm"]
+
+[ext_resource type="PackedScene" uid="uid://d1ca60jhni686" path="res://scenes/cashier/cashier.tscn" id="1_8noaa"]
+[ext_resource type="Script" uid="uid://dwmvcx8pesxp8" path="res://scenes/customer/customer.gd" id="2_duem0"]
+[ext_resource type="Texture2D" uid="uid://btkim2rd8pj1q" path="res://Assets/Sprites/UI/circle.png" id="3_k1bqq"]
+[ext_resource type="Texture2D" uid="uid://n10lbbye572a" path="res://Assets/Sprites/UI/Coffee.png" id="4_6bdyt"]
+[ext_resource type="FontFile" uid="uid://due6jbyye53ld" path="res://Assets/Fonts/font_score.ttf" id="5_jy5aj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lu5oa"]
+font = ExtResource("5_jy5aj")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[node name="Customer" instance=ExtResource("1_8noaa")]
+script = ExtResource("2_duem0")
+
+[node name="Body" parent="visuals" index="1"]
+unique_name_in_owner = true
+
+[node name="Face" parent="visuals" index="2"]
+unique_name_in_owner = true
+
+[node name="HandLeft" parent="visuals" index="3"]
+unique_name_in_owner = true
+
+[node name="HandRigh" parent="visuals" index="4"]
+unique_name_in_owner = true
+
+[node name="ItemBox" type="Control" parent="." index="2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -143.0
+offset_top = -138.0
+offset_right = -43.0
+offset_bottom = -38.0
+
+[node name="BG" type="TextureRect" parent="ItemBox" index="0"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_k1bqq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemImg" type="TextureRect" parent="ItemBox/BG" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 20.0
+offset_right = 63.0
+offset_bottom = 80.0
+texture = ExtResource("4_6bdyt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemLabel" type="Label" parent="ItemBox/BG" index="1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 57.0
+offset_top = 40.0
+offset_right = 97.0
+offset_bottom = 81.0
+text = "3"
+label_settings = SubResource("LabelSettings_lu5oa")
