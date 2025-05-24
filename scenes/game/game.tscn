@@ -27,11 +27,13 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_kelw5")
 
 [node name="CoffeeCounter" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(417, 1382)
 scale = Vector2(0.8, 0.9)
 texture = ExtResource("3_lfrn8")
 
 [node name="BurgerCounter" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(657, 1382)
 scale = Vector2(0.8, 0.9)
 texture = ExtResource("3_lfrn8")
