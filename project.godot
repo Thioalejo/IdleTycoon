@@ -15,6 +15,10 @@ run/main_scene="uid://b5ve8o8ls1csd"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://autoloads/game_manager.tscn"
+
 [display]
 
 window/size/viewport_width=1080
@@ -22,7 +26,9 @@ window/size/viewport_height=1920
 window/size/window_width_override=480
 window/size/window_height_override=854
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
