@@ -136,6 +136,7 @@ _data = {
 }
 
 [node name="Cashier" type="Node2D"]
+z_index = 1
 script = ExtResource("1_erpnb")
 
 [node name="visuals" type="Node2D" parent="."]
