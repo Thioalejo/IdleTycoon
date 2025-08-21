@@ -2,6 +2,7 @@ extends Node2D
 
 class_name Cashier
 
+signal on_order_completed(cashier: Cashier)
 @export var move_speed := 50.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -52,7 +53,18 @@ func start_cook_time() -> void:
 	
 
 func deliver_order() -> void:
-	print("Cook Completed")
+	#print("Cook Completed")
+	move_to_customer()
+	await get_tree().create_timer(1.1).timeout
+	current_customer.receive_order()
+	GameManager.current_coins += item_request.profit
+	
+	if not current_customer.current_order_status <= 0:
+		move_to_item_position()
+	else:
+		animation_player.play("idle_animation")
+		current_customer = null
+		on_order_completed.emit(self)
 
 #noc conectamos por medio del metodo creado on_cook_complete, para
 #llamar el ocultar del cook_bar y resetear el valor
