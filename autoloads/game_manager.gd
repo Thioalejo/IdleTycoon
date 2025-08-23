@@ -3,6 +3,8 @@ extends Node
 signal _on_customer_request(customer: Customer)
 signal on_customer_order_completed(customer: Customer)
 
+const COIN_VFX = preload("res://scenes/extra/coin_vfx.tscn")
+
 @export var coffee: Item
 @export var burger: Item
 
@@ -22,3 +24,13 @@ func get_item_pos(item: Item) -> Vector2:
 		Item.ItemType.Burger:
 			return burger_counter_pos
 	return Vector2.ZERO
+
+
+func play_coin_vfx(spawn_pos: Vector2) -> void:
+	var coin_instance = COIN_VFX.instantiate()
+	get_tree().root.add_child(coin_instance)
+	
+	var new_pos := Vector2(spawn_pos.x, spawn_pos.y - 70)
+	coin_instance.global_position = new_pos
+	coin_instance.emitting = true
+	coin_instance.finished.connect(func(): coin_instance.queue_free())
